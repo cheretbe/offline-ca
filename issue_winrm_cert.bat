@@ -8,3 +8,8 @@ IF NOT EXIST "%~dp0ca-files\root_ca.crt" (
 )
 
 CALL "%~dp0lib\get_ca_password.bat"
+
+"%~dp0lib\win\step\bin\step.exe" certificate create example.com ^
+  "%~dp0output/example.com.crt" "%~dp0output/example.com.key" ^
+  --template "%~dp0winrm.tpl" --not-after=87600h --insecure --no-password ^
+  --ca "%~dp0ca-files/root_ca.crt" --ca-key "%~dp0ca-files/root_ca.key"
